@@ -1,0 +1,1293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Sovereignty Timeline — Bitcoin Freedom Planner</title>
+<meta name="description" content="Plan your Bitcoin sovereignty. Track milestones, project your FIRE date, and get personalized recommendations based on your stack, DCA, and lifestyle."/>
+<meta property="og:title" content="Sovereignty Timeline — Bitcoin Freedom Planner"/>
+<meta property="og:description" content="When will your Bitcoin stack set you free? Find out with the Sovereignty Timeline."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --bg:#0d0d0f;--surface:#131316;--surface2:#1a1a1f;
+  --border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.13);
+  --amber:#f7931a;--amber-dim:rgba(247,147,26,0.15);
+  --text:#f0ede8;--muted:#6b6870;--subtle:#3a3840;
+  --green:#34d399;--green-dim:rgba(52,211,153,0.12);
+  --red:#f87171;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;}
+.orb{position:fixed;border-radius:50%;filter:blur(130px);pointer-events:none;z-index:0;}
+.orb1{width:600px;height:600px;background:radial-gradient(circle,rgba(247,147,26,0.09) 0%,transparent 70%);top:-180px;right:-80px;animation:orb1 18s ease-in-out infinite;}
+.orb2{width:400px;height:400px;background:radial-gradient(circle,rgba(247,147,26,0.05) 0%,transparent 70%);bottom:60px;left:-80px;animation:orb2 22s ease-in-out infinite;}
+@keyframes orb1{0%,100%{transform:translate(0,0)}50%{transform:translate(-40px,60px)}}
+@keyframes orb2{0%,100%{transform:translate(0,0)}50%{transform:translate(30px,-40px)}}
+.shell{position:relative;z-index:1;max-width:1180px;margin:0 auto;padding:0 36px 100px;}
+
+/* HEADER */
+.hdr{display:flex;align-items:center;justify-content:space-between;padding:36px 0 38px;border-bottom:1px solid var(--border);margin-bottom:48px;}
+.logo{display:flex;align-items:center;gap:16px;}
+
+/* LOGO — Orange Shield with pulsating ₿ */
+.logo-mark{
+  width:56px;height:63px;
+  position:relative;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+  animation:shieldHover 3s ease-in-out infinite;
+}
+@keyframes shieldHover{
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(-5px);}
+}
+.logo-shield-svg{
+  position:absolute;inset:0;width:56px;height:63px;
+}
+.logo-mark-b{
+  position:relative;z-index:5;
+  font-size:26px;font-weight:800;font-family:'Syne',sans-serif;
+  color:#fff;letter-spacing:-1px;
+  margin-top:-3px;
+  animation:bPulse 2s ease-in-out infinite;
+}
+@keyframes bPulse{
+  0%,100%{
+    color:#ffffff;
+    text-shadow:0 0 6px rgba(255,255,255,0.4);
+  }
+  50%{
+    color:#fff8e0;
+    text-shadow:
+      0 0 12px rgba(255,220,100,1),
+      0 0 24px rgba(247,147,26,0.8),
+      0 0 40px rgba(247,147,26,0.3);
+  }
+}
+.logo-text h1{font-size:18px;font-weight:700;letter-spacing:-0.3px;}
+.logo-text p{font-size:10px;color:var(--muted);font-family:'JetBrains Mono',monospace;letter-spacing:0.7px;margin-top:3px;}
+.live-badge{display:flex;align-items:center;gap:9px;background:var(--surface);border:1px solid var(--border2);border-radius:100px;padding:8px 18px;font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--muted);transition:border-color 0.4s;}
+.live-badge.up{border-color:rgba(52,211,153,0.4);}
+.live-badge.down{border-color:rgba(248,113,113,0.4);}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 9px var(--green);animation:blink 2s ease-in-out infinite;flex-shrink:0;}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.35}}
+/* historical CAGR chips */
+.hdr-right{display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:flex-end;}
+.cagr-chips{display:flex;align-items:center;gap:6px;}
+.cagr-chip{
+  display:flex;flex-direction:column;align-items:center;
+  padding:5px 12px;
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:10px;
+  font-family:'JetBrains Mono',monospace;
+  transition:border-color 0.2s;
+}
+.cagr-chip:hover{border-color:var(--border2);}
+.cagr-chip-period{font-size:9px;color:var(--muted);letter-spacing:0.8px;text-transform:uppercase;margin-bottom:2px;}
+.cagr-chip-val{font-size:13px;font-weight:600;color:var(--green);}
+.chip-divider{width:1px;height:28px;background:var(--border);margin:0 2px;}
+
+/* HERO */
+.hero{display:grid;grid-template-columns:1fr 270px;gap:22px;margin-bottom:40px;}
+.hero-main{background:var(--surface);border:1px solid var(--border);border-radius:22px;padding:32px 38px;position:relative;overflow:hidden;}
+.hero-main::after{content:'';position:absolute;inset:0;background:linear-gradient(130deg,rgba(247,147,26,0.045) 0%,transparent 55%);pointer-events:none;}
+.eyebrow{font-size:10px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--amber);margin-bottom:12px;}
+.hero-title{font-family:'Instrument Serif',serif;font-size:38px;line-height:1.17;margin-bottom:10px;}
+.hero-title em{font-style:italic;color:var(--amber);}
+.hero-desc{font-size:14px;color:var(--muted);line-height:1.7;max-width:460px;}
+.stats-bar{display:flex;gap:28px;margin-top:28px;padding-top:24px;border-top:1px solid var(--border);flex-wrap:wrap;}
+.stat{display:flex;flex-direction:column;gap:5px;}
+.stat-val{font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:500;letter-spacing:-0.5px;}
+.stat-lbl{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:0.8px;}
+
+/* SCORE CARD */
+.score-card{background:var(--surface);border:1px solid var(--border);border-radius:22px;padding:28px 20px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;text-align:center;}
+.ring-wrap{position:relative;width:120px;height:120px;}
+.ring-wrap svg{width:120px;height:120px;transform:rotate(-90deg);}
+.ring-center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;}
+.ring-den{font-size:11px;color:var(--muted);margin-top:3px;}
+.score-lbl{font-size:14px;font-weight:700;}
+
+/* MAIN GRID */
+.main-grid{display:grid;grid-template-columns:300px 1fr;gap:22px;align-items:start;}
+
+/* PANEL */
+.panel{background:var(--surface);border:1px solid var(--border);border-radius:22px;padding:28px;}
+.ptitle{font-size:10px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;color:var(--muted);margin-bottom:20px;}
+.field{margin-bottom:16px;}
+.field label{display:block;font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:0.6px;margin-bottom:8px;}
+.irow{display:flex;align-items:center;background:var(--surface2);border:1px solid var(--border);border-radius:12px;overflow:hidden;transition:border-color .2s,box-shadow .2s;}
+.irow:focus-within{border-color:var(--amber);box-shadow:0 0 0 3px rgba(247,147,26,0.12);}
+.ipfx{padding:0 12px;height:46px;font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--muted);border-right:1px solid var(--border);display:flex;align-items:center;flex-shrink:0;}
+.irow input{background:transparent;border:none;outline:none;padding:0 14px;height:46px;width:100%;font-family:'JetBrains Mono',monospace;font-size:15px;color:var(--text);}
+.irow input::placeholder{color:var(--subtle);}
+.divider{height:1px;background:var(--border);margin:20px 0;}
+
+/* SCENARIO */
+.scen-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px;}
+.scen-btn{padding:10px 6px;border-radius:11px;border:1px solid var(--border);background:transparent;cursor:pointer;font-family:'Syne',sans-serif;display:flex;flex-direction:column;align-items:center;gap:3px;transition:all .15s;}
+.scen-btn:hover{border-color:var(--border2);}
+.scen-btn .slbl{font-size:13px;font-weight:700;color:var(--muted);}
+.scen-btn .shint{font-size:9px;font-family:'JetBrains Mono',monospace;color:var(--subtle);}
+.scen-btn.bear.on{border-color:#f87171;background:rgba(248,113,113,.08);}.scen-btn.bear.on .slbl{color:#f87171;}
+.scen-btn.base.on{border-color:var(--amber);background:var(--amber-dim);}.scen-btn.base.on .slbl{color:var(--amber);}
+.scen-btn.bull.on{border-color:var(--green);background:var(--green-dim);}.scen-btn.bull.on .slbl{color:var(--green);}
+.scen-btn.custom.on{border-color:#818cf8;background:rgba(129,140,248,.1);}.scen-btn.custom.on .slbl{color:#818cf8;}
+.scen-hint{padding:10px 13px;background:var(--surface2);border:1px solid var(--border);border-radius:11px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);line-height:1.7;}
+.custom-box{display:none;flex-direction:column;gap:10px;padding:14px;background:var(--surface2);border:1px solid var(--border);border-radius:12px;margin-top:6px;}
+.custom-box.show{display:flex;}
+
+/* RECO */
+.reco-box{background:var(--surface);border:1px solid var(--border);border-radius:22px;padding:26px 28px;margin-top:22px;}
+.reco-title{font-size:11px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;color:var(--muted);margin-bottom:18px;display:flex;align-items:center;gap:9px;}
+.reco-item{display:flex;align-items:flex-start;gap:14px;padding:16px 18px;border-radius:14px;border:1px solid var(--border);background:var(--surface2);margin-bottom:10px;transition:border-color 0.2s;}
+.reco-item:last-child{margin-bottom:0;}
+.reco-item:hover{border-color:var(--border2);}
+.reco-ico{font-size:22px;flex-shrink:0;margin-top:2px;}
+.reco-head{font-size:15px;font-weight:700;color:var(--text);margin-bottom:6px;}
+.reco-desc{font-size:13px;color:#9d9aa2;line-height:1.65;}
+.reco-badge{display:inline-flex;align-items:center;gap:5px;margin-top:10px;font-family:'JetBrains Mono',monospace;font-size:11px;padding:3px 10px;border-radius:100px;}
+.reco-badge.high{background:var(--green-dim);color:var(--green);border:1px solid rgba(52,211,153,0.2);}
+.reco-badge.med{background:var(--amber-dim);color:var(--amber);border:1px solid rgba(247,147,26,0.2);}
+.reco-badge.low{background:var(--surface);color:var(--muted);border:1px solid var(--border);}
+
+/* TIMELINE */
+.cagr-bar{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;padding:11px 16px;background:var(--surface);border:1px solid var(--border);border-radius:12px;}
+.cagr-bar-label{font-size:11px;color:var(--muted);font-family:'JetBrains Mono',monospace;}
+.cagr-bar-val{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;}
+.timeline{display:flex;flex-direction:column;gap:11px;}
+.mcard{background:var(--surface);border:1px solid var(--border);border-radius:17px;padding:20px 22px;position:relative;overflow:hidden;transition:border-color .2s,transform .2s,box-shadow .2s;}
+.mcard:hover{border-color:var(--border2);transform:translateY(-1px);box-shadow:0 8px 30px rgba(0,0,0,.35);}
+.mcard::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--subtle);transition:background .3s;}
+.mcard.reached{border-color:rgba(52,211,153,.22);background:linear-gradient(135deg,var(--surface),rgba(52,211,153,.035));}
+.mcard.reached::before{background:var(--green);}
+.mcard.nxt{border-color:rgba(247,147,26,.3);background:linear-gradient(135deg,var(--surface),rgba(247,147,26,.045));}
+.mcard.nxt::before{background:var(--amber);box-shadow:0 0 12px rgba(247,147,26,.5);}
+.mtop{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:8px;}
+.mleft{display:flex;align-items:center;gap:12px;}
+.mico{width:36px;height:36px;border-radius:10px;background:var(--surface2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0;}
+.mcard.reached .mico{background:var(--green-dim);border-color:rgba(52,211,153,.2);}
+.mcard.nxt .mico{background:var(--amber-dim);border-color:rgba(247,147,26,.2);}
+.mname{font-size:15px;font-weight:700;letter-spacing:-0.2px;}
+.msub{font-size:12px;color:var(--muted);margin-top:3px;line-height:1.45;}
+.mright{display:flex;flex-direction:column;align-items:flex-end;gap:5px;flex-shrink:0;}
+.mbadge{font-family:'JetBrains Mono',monospace;font-size:11px;padding:4px 11px;border-radius:100px;white-space:nowrap;}
+.mbadge.rb{background:var(--green-dim);color:var(--green);border:1px solid rgba(52,211,153,.2);}
+.mbadge.db{background:var(--amber-dim);color:var(--amber);border:1px solid rgba(247,147,26,.2);}
+.mbadge.fb{background:var(--surface2);color:var(--subtle);border:1px solid var(--border);}
+/* years-away pill */
+.yrs-pill{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted);background:var(--surface2);border:1px solid var(--border);padding:2px 8px;border-radius:100px;white-space:nowrap;}
+.mbar-row{display:flex;align-items:center;gap:12px;margin-top:14px;}
+.mtrack{flex:1;height:6px;background:var(--surface2);border-radius:100px;overflow:hidden;border:1px solid rgba(255,255,255,0.04);}
+.mfill{height:100%;border-radius:100px;transition:width .8s cubic-bezier(.4,0,.2,1),background .5s ease;}
+.mamts{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);white-space:nowrap;}
+
+/* TARGET YEAR */
+.tyr-card{border-radius:12px;padding:14px 16px;margin-top:2px;}
+.tyr-card.on-track{background:var(--green-dim);border:1px solid rgba(52,211,153,0.25);}
+.tyr-card.off-track{background:rgba(247,147,26,0.1);border:1px solid rgba(247,147,26,0.25);}
+.tyr-card.impossible{background:rgba(248,113,113,0.08);border:1px solid rgba(248,113,113,0.2);}
+.tyr-status{font-size:12px;font-weight:700;margin-bottom:6px;}
+.tyr-status.on-track{color:var(--green);}
+.tyr-status.off-track{color:var(--amber);}
+.tyr-status.impossible{color:var(--red);}
+.tyr-detail{font-size:11px;font-family:'JetBrains Mono',monospace;color:var(--muted);line-height:1.7;}
+.tyr-detail strong{color:var(--text);}
+.tyr-countdown{display:inline-block;margin-top:8px;font-family:'JetBrains Mono',monospace;font-size:10px;padding:2px 10px;border-radius:100px;background:var(--surface);border:1px solid var(--border);color:var(--muted);}
+/* milestone target-year flag removed */
+.empty{text-align:center;padding:70px 40px;}
+.empty .ei{font-size:38px;margin-bottom:14px;}
+.empty p{font-size:14px;color:var(--muted);line-height:1.7;}
+::-webkit-scrollbar{width:4px;}
+::-webkit-scrollbar-track{background:transparent;}
+::-webkit-scrollbar-thumb{background:var(--subtle);border-radius:2px;}
+@keyframes cin{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+/* DISCLOSURE FOOTER */
+.disclosure{
+  margin-top:60px;
+  padding-top:32px;
+  border-top:1px solid var(--border);
+}
+.disclosure-inner{
+  display:flex;align-items:flex-start;gap:14px;
+  padding:20px 24px;
+  background:var(--surface);
+  border:1px solid rgba(248,113,113,0.12);
+  border-radius:16px;
+}
+.disc-icon{font-size:18px;flex-shrink:0;margin-top:1px;}
+.disclosure-inner p{
+  font-size:11px;
+  color:var(--muted);
+  line-height:1.75;
+  font-family:'JetBrains Mono',monospace;
+}
+.disclosure-inner p strong{
+  color:rgba(248,113,113,0.8);
+  font-weight:600;
+}
+.disclosure-inner p em{
+  color:var(--text);
+  font-style:normal;
+  font-weight:500;
+}
+@media(max-width:768px){
+  .disclosure{margin-top:40px;padding-top:24px;}
+  .disclosure-inner{padding:14px 16px;gap:10px;}
+  .disclosure-inner p{font-size:10px;}
+}
+@media (max-width: 768px) {
+
+  /* shell padding */
+  .shell{padding:0 16px 80px;}
+
+  /* header — stack logo and badge vertically */
+  .hdr{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:16px;
+    padding:24px 0 20px;
+    margin-bottom:28px;
+  }
+  .hdr-right{
+    width:100%;
+    justify-content:flex-start;
+    flex-wrap:wrap;
+    gap:8px;
+  }
+  .cagr-chips{gap:4px;}
+  .cagr-chip{padding:4px 10px;}
+  .cagr-chip-val{font-size:12px;}
+  .live-badge{font-size:11px;padding:6px 12px;}
+
+  /* hero — single column */
+  .hero{
+    grid-template-columns:1fr;
+    gap:16px;
+    margin-bottom:24px;
+  }
+  .hero-main{padding:22px 20px;}
+  .hero-title{font-size:26px;}
+  .hero-desc{font-size:13px;}
+  .stats-bar{gap:18px;}
+  .stat-val{font-size:17px;}
+
+  /* score card — smaller ring */
+  .score-card{padding:20px 16px;flex-direction:row;gap:20px;text-align:left;justify-content:flex-start;}
+  .ring-wrap{width:80px;height:80px;flex-shrink:0;}
+  .ring-wrap svg{width:80px;height:80px;}
+  #ring-num{font-size:22px;}
+
+  /* main grid — single column */
+  .main-grid{
+    grid-template-columns:1fr;
+    gap:16px;
+  }
+
+  /* panel */
+  .panel{padding:20px 16px;}
+
+  /* target year result card */
+  .tyr-card{padding:12px 14px;}
+  .tyr-status{font-size:11px;}
+  .tyr-detail{font-size:10px;}
+
+  /* reco box */
+  .reco-box{padding:18px 16px;margin-top:16px;}
+  .reco-head{font-size:13px;}
+  .reco-desc{font-size:12px;}
+  .reco-item{padding:12px 14px;gap:10px;}
+  .reco-ico{font-size:18px;}
+
+  /* CAGR bar above timeline */
+  .cagr-bar{flex-direction:column;align-items:flex-start;gap:4px;padding:10px 12px;}
+  .cagr-bar-val{font-size:12px;}
+
+  /* milestone cards */
+  .mcard{padding:14px 16px;}
+  .mname{font-size:13px;}
+  .msub{font-size:11px;}
+  .mbadge{font-size:10px;padding:3px 8px;}
+  .mico{width:30px;height:30px;font-size:14px;}
+  .mamts{font-size:10px;}
+  .yrs-pill{font-size:9px;}
+
+  /* hide orbs on mobile — save render performance */
+  .orb{display:none;}
+
+  /* logo shield slightly smaller on mobile */
+  .logo-mark{width:46px;height:52px;}
+  .logo-shield-svg{width:46px;height:52px;}
+  .logo-mark-b{font-size:21px;}
+  .logo-text h1{font-size:16px;}
+}
+
+@media (max-width: 400px) {
+  .hero-title{font-size:22px;}
+  .stats-bar{gap:12px;}
+  .stat-val{font-size:15px;}
+  .shell{padding:0 12px 60px;}
+  .score-card{flex-direction:column;text-align:center;}
+}
+</style>
+</head>
+<body>
+<div class="orb orb1"></div>
+<div class="orb orb2"></div>
+<div class="shell">
+
+  <!-- HEADER -->
+  <div class="hdr">
+    <div class="logo">
+      <div class="logo-mark">
+        <svg class="logo-shield-svg" viewBox="0 0 48 54" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <!-- orange shield fill -->
+            <linearGradient id="sg" x1="0" y1="0" x2="48" y2="54" gradientUnits="userSpaceOnUse">
+              <stop offset="0%"   stop-color="#ff9f2f"/>
+              <stop offset="50%"  stop-color="#f7931a"/>
+              <stop offset="100%" stop-color="#d4720f"/>
+            </linearGradient>
+            <!-- inner dark fill -->
+            <linearGradient id="si" x1="0" y1="0" x2="48" y2="54" gradientUnits="userSpaceOnUse">
+              <stop offset="0%"   stop-color="#111"/>
+              <stop offset="100%" stop-color="#000"/>
+            </linearGradient>
+            <!-- top shine -->
+            <radialGradient id="ss" cx="35%" cy="20%" r="55%">
+              <stop offset="0%"   stop-color="rgba(255,255,255,0.18)"/>
+              <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+            </radialGradient>
+          </defs>
+          <!-- outer shield -->
+          <path d="M24 1 L47 9 L47 28 Q47 44 24 53 Q1 44 1 28 L1 9 Z"
+            fill="url(#sg)"/>
+          <!-- shine overlay -->
+          <path d="M24 1 L47 9 L47 28 Q47 44 24 53 Q1 44 1 28 L1 9 Z"
+            fill="url(#ss)"/>
+          <!-- inner black shield inset -->
+          <path d="M24 7 L41 13.5 L41 28 Q41 40 24 47 Q7 40 7 28 L7 13.5 Z"
+            fill="url(#si)"/>
+          <!-- subtle inner border -->
+          <path d="M24 7 L41 13.5 L41 28 Q41 40 24 47 Q7 40 7 28 L7 13.5 Z"
+            fill="none" stroke="rgba(247,147,26,0.2)" stroke-width="0.5"/>
+        </svg>
+        <span class="logo-mark-b">₿</span>
+      </div>
+      <div class="logo-text"><h1>Sovereignty Timeline</h1><p>BITCOIN FREEDOM PLANNER</p></div>
+    </div>
+    <div class="hdr-right">
+      <div class="cagr-chips">
+        <div class="cagr-chip" title="BTC ~$6,500 (Mar 2020) → ~$84,000 (Mar 2025)">
+          <span class="cagr-chip-period">5-yr CAGR</span>
+          <span class="cagr-chip-val" id="chip-5yr">~67%</span>
+        </div>
+        <div class="chip-divider"></div>
+        <div class="cagr-chip" title="BTC ~$270 (Mar 2015) → ~$84,000 (Mar 2025)">
+          <span class="cagr-chip-period">10-yr CAGR</span>
+          <span class="cagr-chip-val" id="chip-10yr">~80%</span>
+        </div>
+        <div class="chip-divider"></div>
+        <div class="cagr-chip" title="BTC ~$0.30 (Jan 2011) → ~$84,000 (Mar 2025)">
+          <span class="cagr-chip-period">15-yr CAGR</span>
+          <span class="cagr-chip-val" id="chip-15yr">~130%</span>
+        </div>
+      </div>
+      <!-- Live BTC price -->
+      <div class="live-badge" id="live-badge">
+        <span class="dot"></span>
+        <span style="font-size:11px;letter-spacing:0.5px;">BTC</span>
+        <span id="price-val" style="color:var(--amber);font-weight:600;font-size:15px;">$84,000</span>
+        <span id="price-chg" style="display:none;font-size:11px;"></span>
+        <span id="last-upd" style="font-size:10px;color:var(--subtle);"></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-main">
+      <div class="eyebrow">Your Path to Freedom</div>
+      <div class="hero-title">Every sat brings you <em>closer.</em></div>
+      <div class="hero-desc">Enter your stack, your DCA, and your lifestyle cost. Watch how your growth rate shapes your entire future.</div>
+      <div class="stats-bar">
+        <div class="stat"><div class="stat-val" id="h-stack" style="color:var(--amber)">₿ 0.5000</div><div class="stat-lbl">Your Stack</div></div>
+        <div class="stat"><div class="stat-val" id="h-usd">$42,000</div><div class="stat-lbl">USD Value</div></div>
+        <div class="stat"><div class="stat-val" id="h-next" style="color:var(--green)">—</div><div class="stat-lbl">Next Milestone</div></div>
+        <div class="stat"><div class="stat-val" id="h-reached">0/9</div><div class="stat-lbl">Reached</div></div>
+        <div class="stat"><div class="stat-val" id="h-cagr" style="color:var(--amber)">55%</div><div class="stat-lbl">Growth Rate</div></div>
+      </div>
+    </div>
+    <div class="score-card">
+      <div class="ring-wrap">
+        <svg viewBox="0 0 120 120">
+          <circle cx="60" cy="60" r="50" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="7"/>
+          <circle id="ring-arc" cx="60" cy="60" r="50" fill="none" stroke="#f7931a" stroke-width="7"
+            stroke-linecap="round" stroke-dasharray="314.16" stroke-dashoffset="314.16"
+            style="transition:stroke-dashoffset 0.9s cubic-bezier(.4,0,.2,1);filter:drop-shadow(0 0 8px #f7931a99)"/>
+        </svg>
+        <div class="ring-center">
+          <div id="ring-num" style="font-family:'JetBrains Mono',monospace;font-size:30px;font-weight:600;color:var(--amber)">0</div>
+          <div class="ring-den">/ 100</div>
+        </div>
+      </div>
+      <div class="score-lbl">Sovereignty Score</div>
+      <div id="score-sub" style="font-size:12px;color:var(--muted);line-height:1.5;max-width:190px;">Just getting started</div>
+    </div>
+  </div>
+
+  <!-- MAIN GRID -->
+  <div class="main-grid">
+    <!-- LEFT -->
+    <div>
+      <div class="panel">
+        <div class="ptitle">Your Numbers</div>
+        <div class="field">
+          <label>Bitcoin Stack (BTC)</label>
+          <div class="irow"><span class="ipfx">₿</span><input type="number" id="inp-stack" value="0.1" step="0.001" min="0" placeholder="0.00"/></div>
+        </div>
+        <div class="field">
+          <label>Monthly DCA ($)</label>
+          <div class="irow"><span class="ipfx">$</span><input type="number" id="inp-dca" value="200" min="0" placeholder="100"/></div>
+        </div>
+        <div class="field">
+          <label>Monthly Expenses ($)</label>
+          <div class="irow"><span class="ipfx">$</span><input type="number" id="inp-exp" value="3500" min="1" placeholder="3000"/></div>
+        </div>
+
+        <div class="divider"></div>
+        <div class="ptitle">Annual Growth Rate (CAGR)</div>
+
+        <div class="scen-grid">
+          <button class="scen-btn bear" onclick="setScen('bear')"><span class="slbl">Bear</span><span class="shint">20%/yr</span></button>
+          <button class="scen-btn base on" onclick="setScen('base')"><span class="slbl">Base</span><span class="shint">55%/yr</span></button>
+          <button class="scen-btn bull" onclick="setScen('bull')"><span class="slbl">Bull</span><span class="shint">110%/yr</span></button>
+          <button class="scen-btn custom" onclick="setScen('custom')"><span class="slbl">Custom</span><span class="shint">you pick</span></button>
+        </div>
+
+        <div id="scen-hint" class="scen-hint"></div>
+        <div id="custom-box" class="custom-box">
+          <div class="field" style="margin-bottom:0">
+            <label>BTC Price Override ($)</label>
+            <div class="irow"><span class="ipfx">$</span><input type="number" id="inp-cprice" min="1" placeholder="leave blank for live price"/></div>
+          </div>
+          <div class="field" style="margin-bottom:0">
+            <label>Annual Growth Rate (%)</label>
+            <div class="irow"><span class="ipfx">%</span><input type="number" id="inp-cgrowth" value="55" min="1" max="1000"/></div>
+          </div>
+          <div id="custom-meta" style="font-size:11px;font-family:'JetBrains Mono',monospace;color:var(--muted);padding-top:4px;line-height:1.8;"></div>
+        </div>
+
+        <div class="divider"></div>
+        <div class="ptitle">🎯 Freedom Target Year</div>
+        <div class="field">
+          <label>I want to be free by...</label>
+          <div class="irow"><span class="ipfx">yr</span><input type="number" id="inp-target-year" min="2025" max="2075" placeholder="e.g. 2035"/></div>
+        </div>
+        <div id="target-year-result"></div>
+      </div>
+
+    </div>
+
+    <!-- RIGHT -->
+    <div>
+      <div class="cagr-bar">
+        <span class="cagr-bar-label">Projections based on growth rate:</span>
+        <span class="cagr-bar-val" id="cagr-display" style="color:var(--amber)">CAGR 55%/yr · 3.72%/mo</span>
+      </div>
+      <div class="timeline" id="timeline">
+        <div class="empty"><div class="ei">₿</div><p>Enter your Bitcoin stack<br>to unlock your sovereignty timeline.</p></div>
+      </div>
+      <!-- RECOMMENDATIONS — now in right column -->
+      <div class="reco-box" id="reco-box" style="display:none;margin-top:22px;">
+        <div class="reco-title"><span>💬</span> Plan Recommendations</div>
+        <div id="reco-list"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DISCLOSURE FOOTER -->
+  <div class="disclosure">
+    <div class="disclosure-inner">
+      <span class="disc-icon">⚠️</span>
+      <p>
+        <strong>Simulation Only — Not Financial Advice.</strong>
+        All projections on this tool are based on historical Bitcoin performance and user-defined assumptions. Past performance is not indicative of future results. Bitcoin is a highly volatile asset — its price can go up or down significantly. The CAGR rates, milestone dates, and portfolio projections shown here are <em>estimates only</em> and are not guaranteed in any way. This tool is intended for educational and planning purposes only. Nothing on this page constitutes financial, investment, legal, or tax advice. Always do your own research and consult a qualified financial advisor before making any investment decisions.
+      </p>
+    </div>
+  </div>
+
+</div>
+
+<script>
+// ─────────────────────────────────────────────────────────────────
+// STATE
+// ─────────────────────────────────────────────────────────────────
+var livePrice   = 84000;
+var prevPrice   = 84000;
+var currentScen = "base";
+
+var PRESETS = { bear:0.20, base:0.55, bull:1.10 };
+
+var MILESTONE_DEFS = [
+  { id:"3mo",  icon:"🌱", name:"3 Months Free",              sub:"Your first taste of breathing room"                    },
+  { id:"6mo",  icon:"☀️", name:"6 Months Runway",             sub:"Half a year — no financial pressure"                   },
+  { id:"1yr",  icon:"🌅", name:"1 Year of Freedom",           sub:"12 months of living expenses in your stack"            },
+  { id:"5yr",  icon:"✈️", name:"5-Year Sovereignty",          sub:"Half a decade — no employer can touch you"             },
+  { id:"fire", icon:"🔥", name:"FIRE Number",                 sub:"25× annual expenses — retirement threshold"            },
+  { id:"1m",   icon:"💰", name:"$1M Stack",                   sub:"Seven figures in hard money"                           },
+  { id:"free", icon:"⚡", name:"Never Sell Time Again",        sub:"Appreciation alone covers your lifestyle — forever"  },
+  { id:"gen",  icon:"🔱", name:"Generational Wealth (F*** You Money 👑)", sub:"100× annual expenses — a legacy that outlasts you"   },
+];
+
+// ─────────────────────────────────────────────────────────────────
+// HELPERS
+// ─────────────────────────────────────────────────────────────────
+function fmtUSD(n) {
+  if (n >= 1e9) return "$" + (n/1e9).toFixed(1) + "B";
+  if (n >= 1e6) return "$" + (n/1e6).toFixed(2) + "M";
+  if (n >= 1e3) return "$" + (n/1e3).toFixed(0) + "K";
+  return "$" + n.toFixed(0);
+}
+function fmtBTC(n) {
+  if (n < 0.001) return n.toFixed(6);
+  if (n < 1)     return n.toFixed(4);
+  return n.toFixed(3);
+}
+function fmtNum(n) {
+  return n.toLocaleString("en-US", {minimumFractionDigits:0, maximumFractionDigits:0});
+}
+function fmtDate(d) {
+  return d.toLocaleDateString("en-US", {month:"short", year:"numeric"});
+}
+function addMonths(date, n) {
+  var d = new Date(date);
+  d.setMonth(d.getMonth() + n);
+  return d;
+}
+function monthsBetween(a, b) {
+  return Math.max(0, (b.getFullYear()-a.getFullYear())*12 + b.getMonth()-a.getMonth());
+}
+
+// ─────────────────────────────────────────────────────────────────
+// READ INPUTS
+// ─────────────────────────────────────────────────────────────────
+function getInputs() {
+  var stack    = parseFloat(document.getElementById("inp-stack").value);
+  var dca      = parseFloat(document.getElementById("inp-dca").value);
+  var expenses = parseFloat(document.getElementById("inp-exp").value);
+
+  stack    = isNaN(stack)    || stack    < 0 ? 0    : stack;
+  dca      = isNaN(dca)      || dca      < 0 ? 0    : dca;
+  expenses = isNaN(expenses) || expenses < 1 ? 3500 : expenses;
+
+  var price, annualRate;
+
+  if (currentScen === "custom") {
+    var cpRaw = parseFloat(document.getElementById("inp-cprice").value);
+    var cgRaw = parseFloat(document.getElementById("inp-cgrowth").value);
+    price      = (!isNaN(cpRaw) && cpRaw > 0) ? cpRaw : livePrice;
+    annualRate = (!isNaN(cgRaw) && cgRaw > 0) ? cgRaw / 100.0 : 0.55;
+  } else {
+    price      = livePrice;
+    annualRate = PRESETS[currentScen];
+  }
+
+  // safety floor
+  if (annualRate < 0.001) annualRate = 0.001;
+
+  // monthly compounding rate from annual CAGR
+  // CAGR 55%/yr → monthly = (1.55)^(1/12) - 1 = 3.72%
+  var monthlyRate = Math.pow(1.0 + annualRate, 1.0/12.0) - 1.0;
+
+  return { stack:stack, dca:dca, expenses:expenses, price:price, annualRate:annualRate, monthlyRate:monthlyRate };
+}
+
+// ─────────────────────────────────────────────────────────────────
+// PROJECT MONTHS TO TARGET
+// This is the core: simulate month by month.
+// Each month:  (1) BTC price grows by monthlyRate
+//              (2) user buys DCA/price new BTC
+//              (3) check if stack*price >= target
+// ─────────────────────────────────────────────────────────────────
+function projectMonths(stack, dca, price, monthlyRate, target) {
+  var btc = stack;
+  var p   = price;
+  for (var m = 1; m <= 1200; m++) {
+    p   = p * (1.0 + monthlyRate);
+    if (dca > 0) btc = btc + (dca / p);
+    if (btc * p >= target) return m;
+  }
+  return null;
+}
+
+// ─────────────────────────────────────────────────────────────────
+// BUILD MILESTONES
+// ─────────────────────────────────────────────────────────────────
+function buildMilestones(inp) {
+  var stack       = inp.stack;
+  var dca         = inp.dca;
+  var expenses    = inp.expenses;
+  var price       = inp.price;
+  var annualRate  = inp.annualRate;
+  var monthlyRate = inp.monthlyRate;
+
+  var yr = expenses * 12.0;
+  var today = new Date();
+  var currentVal = stack * price;
+
+  // targets — each milestone's USD threshold
+  var targets = {
+    "3mo":  yr * 0.25,
+    "6mo":  yr * 0.5,
+    "1yr":  yr,
+    "5yr":  yr * 5.0,
+    "fire": yr * 25.0,
+    "1m":   1000000,
+    "free": yr / annualRate,
+    "gen":  yr * 100.0,
+  };
+
+  return MILESTONE_DEFS.map(function(def) {
+    var target  = targets[def.id];
+    var reached = currentVal >= target;
+    var months  = reached ? 0 : projectMonths(stack, dca, price, monthlyRate, target);
+    var date    = (reached || months === null) ? null : addMonths(today, months);
+    var pct     = Math.min(100, (currentVal / target) * 100);
+    return {
+      id:        def.id,
+      icon:      def.icon,
+      name:      def.name,
+      sub:       def.sub,
+      target:    target,
+      reached:   reached,
+      months:    months,
+      date:      date,
+      pct:       pct,
+      currentVal:currentVal
+    };
+  });
+}
+
+// ─────────────────────────────────────────────────────────────────
+// BUILD RECOMMENDATIONS
+// Always exactly 2 — the highest-impact, most personal ones.
+// Every sentence uses the user's real numbers.
+// ─────────────────────────────────────────────────────────────────
+function buildRecos(inp, milestones) {
+  var stack       = inp.stack;
+  var dca         = inp.dca;
+  var expenses    = inp.expenses;
+  var price       = inp.price;
+  var annualRate  = inp.annualRate;
+  var monthlyRate = inp.monthlyRate;
+  var totalVal    = stack * price;
+  var yr          = expenses * 12;
+  var recos       = [];
+
+  // helpers
+  var nextM = null;
+  for (var i=0; i<milestones.length; i++) {
+    if (!milestones[i].reached && milestones[i].date) { nextM = milestones[i]; break; }
+  }
+  var fireM = null;
+  for (var i=0; i<milestones.length; i++) {
+    if (milestones[i].id === "fire") { fireM = milestones[i]; break; }
+  }
+  var reachedCount = milestones.filter(function(m){ return m.reached; }).length;
+  var savingsRate  = dca > 0 ? (dca / (dca + expenses)) * 100 : 0;
+
+  // ── R1: No DCA at all — biggest possible wake-up call
+  if (dca === 0 && stack > 0) {
+    recos.push({
+      ico: "🚨",
+      head: "No monthly DCA — your stack is frozen",
+      desc: "₿" + fmtBTC(stack) + " worth " + fmtUSD(totalVal) + " today, but without buying more every month you're betting entirely on price. Starting even " + fmtUSD(50) + "/mo right now means you're accumulating through every dip — that's how generational wealth is built.",
+      impact: "high"
+    });
+  }
+
+  // ── R2: DCA boost — exact months saved, exact new arrival date
+  if (nextM && dca > 0) {
+    var boost      = Math.max(50, Math.round(dca * 0.5 / 50) * 50);
+    var baseMos    = nextM.months;
+    var boostedMos = projectMonths(stack, dca + boost, price, monthlyRate, nextM.target);
+    var saved      = boostedMos !== null ? baseMos - boostedMos : 0;
+    if (saved > 1) {
+      var savedStr  = saved >= 12 ? (saved/12).toFixed(1) + " years" : saved + " months";
+      var newDate   = boostedMos !== null ? fmtDate(addMonths(new Date(), boostedMos)) : "sooner";
+      recos.push({
+        ico: "📈",
+        head: "Add " + fmtUSD(boost) + "/mo → unlock <em>" + nextM.name + "</em> " + savedStr + " earlier",
+        desc: fmtUSD(dca) + "/mo gets you there by " + fmtDate(nextM.date) + ". Bump to " + fmtUSD(dca + boost) + "/mo and that moves to <strong>" + newDate + "</strong>. That's " + savedStr + " of your life back for " + fmtUSD(boost) + " a month.",
+        impact: "high"
+      });
+    }
+  }
+
+  // ── R3: Low savings rate — name the exact % and what fixing it looks like
+  if (dca > 0 && savingsRate < 6) {
+    var targetDCA   = Math.round(expenses * 0.10);
+    var rateIfFixed = (targetDCA / (targetDCA + expenses)) * 100;
+    recos.push({
+      ico: "⚠️",
+      head: "You're only stacking " + savingsRate.toFixed(1) + "% of your spending — that's below escape velocity",
+      desc: "₿ stackers who reach sovereignty typically put 10–20% of their budget into Bitcoin. Right now you're putting " + fmtUSD(dca) + " against " + fmtUSD(expenses) + "/mo of expenses. Raising to " + fmtUSD(targetDCA) + "/mo would lift your rate to " + rateIfFixed.toFixed(0) + "% and compress every single milestone on your timeline.",
+      impact: "high"
+    });
+  }
+
+  // ── R4: High savings rate — celebrate + give the next target
+  if (dca > 0 && savingsRate >= 20) {
+    var fireStr = fireM && !fireM.reached && fireM.date
+      ? "Your FIRE date is " + fmtDate(fireM.date) + " — " + (fireM.months/12).toFixed(1) + " years away."
+      : fireM && fireM.reached ? "Your FIRE number is already reached. You're free." : "";
+    recos.push({
+      ico: "🔥",
+      head: "Elite stacker — " + savingsRate.toFixed(0) + "% of your budget goes into Bitcoin",
+      desc: fmtUSD(dca) + "/mo into Bitcoin against " + fmtUSD(expenses) + "/mo of expenses puts you ahead of 99% of plebs. " + fireStr + " Keep the DCA going through every dip — that's where your lead compounds.",
+      impact: "med"
+    });
+  }
+
+  // ── R5: Expense cut — calculate FIRE target impact + exact months earlier
+  if (expenses > 1500) {
+    var cut        = Math.round(expenses * 0.10);
+    var newExp     = expenses - cut;
+    var oldFIRE    = yr * 25;
+    var newFIRE    = newExp * 12 * 25;
+    var newFireMos = (!fireM || fireM.reached) ? null : projectMonths(stack, dca, price, monthlyRate, newFIRE);
+    var delta      = (newFireMos !== null && fireM && !fireM.reached && fireM.months)
+      ? fireM.months - newFireMos : null;
+    var deltaStr   = delta && delta > 0
+      ? " — and hits your FIRE number " + (delta >= 12 ? (delta/12).toFixed(1) + " years" : delta + " months") + " earlier" : "";
+    recos.push({
+      ico: "✂️",
+      head: "Cut " + fmtUSD(cut) + "/mo → your FIRE target drops by " + fmtUSD(oldFIRE - newFIRE),
+      desc: "Going from " + fmtUSD(expenses) + " to " + fmtUSD(newExp) + "/mo in expenses shrinks your FIRE number from " + fmtUSD(oldFIRE) + " to " + fmtUSD(newFIRE) + deltaStr + ". Every dollar you stop spending is worth 25× in freedom.",
+      impact: "high"
+    });
+  }
+
+  // ── R6: Stack tier nudges — precise, motivating
+  if (stack > 0 && stack < 0.01) {
+    var mosTo001 = dca > 0 ? Math.ceil(((0.01 - stack) * price) / dca) : null;
+    recos.push({
+      ico: "🌱",
+      head: "First target: 1,000,000 satoshis (0.01 BTC = " + fmtUSD(price * 0.01) + ")",
+      desc: "You're at ₿" + fmtBTC(stack) + ". Your first real milestone is crossing into the million-sat club." + (mosTo001 ? " At " + fmtUSD(dca) + "/mo DCA you're ~" + mosTo001 + " months away." : " Set a DCA and watch it happen.") + " The first million sats feel like nothing — until the price does.",
+      impact: "high"
+    });
+  } else if (stack >= 0.01 && stack < 0.1) {
+    var pctTo01  = (stack / 0.1 * 100).toFixed(0);
+    var mosTo01  = dca > 0 ? Math.ceil(((0.1 - stack) * price) / dca) : null;
+    recos.push({
+      ico: "🎯",
+      head: pctTo01 + "% of the way to 0.1 BTC — " + fmtUSD((0.1 - stack) * price) + " to go",
+      desc: "₿" + fmtBTC(stack) + " held." + (mosTo01 ? " At " + fmtUSD(dca) + "/mo that's ~" + (mosTo01 >= 12 ? (mosTo01/12).toFixed(1) + "yr" : mosTo01 + "mo") + " to 0.1 BTC." : "") + " This is where most people start to feel it — when the stack has four figures in USD and it still feels early.",
+      impact: "med"
+    });
+  } else if (stack >= 0.1 && stack < 1.0) {
+    var pctTo1   = (stack * 100).toFixed(1);
+    var mosTo1   = dca > 0 ? Math.ceil(((1.0 - stack) * price) / dca) : null;
+    recos.push({
+      ico: "🏆",
+      head: "₿" + fmtBTC(stack) + " — " + pctTo1 + "% of the way to 1 whole Bitcoin",
+      desc: fmtUSD((1 - stack) * price) + " more gets you to 1 BTC." + (mosTo1 ? " At your DCA that's ~" + (mosTo1 >= 12 ? (mosTo1/12).toFixed(1) + "yr" : mosTo1 + "mo") + " away." : "") + " Fewer than 1 in 100 people on Earth will ever hold a whole coin. You are close. Do not stop.",
+      impact: "med"
+    });
+  } else if (stack >= 1 && stack < 5) {
+    recos.push({
+      ico: "💎",
+      head: "1 BTC+ holder — statistically, you've already won",
+      desc: "₿" + fmtBTC(stack) + " puts you in the top fraction of a percent globally. The next target is 5 BTC (" + fmtUSD(5 * price) + "). At that level, under almost any CAGR scenario, your stack outlasts you. Keep stacking.",
+      impact: "med"
+    });
+  } else if (stack >= 5) {
+    recos.push({
+      ico: "🔱",
+      head: "₿" + fmtBTC(stack) + " — you're in generational wealth territory",
+      desc: "At this stack size with a " + (annualRate*100).toFixed(0) + "% CAGR, appreciation alone could exceed your annual expenses of " + fmtUSD(yr) + ". Your sovereign score is " + Math.round((reachedCount / milestones.length) * 100) + "/100. The mission now: protect it. Cold storage, multi-sig, no counterparty risk.",
+      impact: "med"
+    });
+  }
+
+  // ── R7: Cold storage — threshold-based, specific
+  if (totalVal >= 5000 && totalVal < 50000) {
+    recos.push({
+      ico: "🔒",
+      head: fmtUSD(totalVal) + " on an exchange is a risk you don't need to take",
+      desc: "A Coldcard or Ledger costs ~$80–150 — that's " + (totalVal / 100).toFixed(1) + "% of your stack. Exchanges get hacked, freeze withdrawals, and go bankrupt. Your sovereignty plan only works if you actually control your keys. Not your keys, not your coins.",
+      impact: totalVal >= 20000 ? "high" : "med"
+    });
+  } else if (totalVal >= 50000) {
+    recos.push({
+      ico: "🔒",
+      head: "Self-custody + multi-sig is non-negotiable at " + fmtUSD(totalVal),
+      desc: "Counterparty risk is your #1 threat — not price. At " + fmtUSD(totalVal) + ", a single exchange failure or hack ends your plan. Multi-signature cold storage (Coldcard + Sparrow) is the minimum. Consider a geographic seed split.",
+      impact: "high"
+    });
+  }
+
+  // ── R8: CAGR reality check — only surfaces when assumption is extreme
+  if (annualRate < 0.25) {
+    recos.push({
+      ico: "📊",
+      head: (annualRate*100).toFixed(0) + "% CAGR is very conservative — Bitcoin's 10yr average is ~80%",
+      desc: "Your milestones are conservative estimates — treat them as worst-case. Bitcoin's actual 10-year CAGR is ~80%. If history rhymes even partially, every date on your timeline arrives earlier than shown. Your plan is a floor.",
+      impact: "low"
+    });
+  } else if (annualRate > 1.50) {
+    recos.push({
+      ico: "📊",
+      head: (annualRate*100).toFixed(0) + "% CAGR — exciting, but stress-test your plan at 55% too",
+      desc: "At " + (annualRate*100).toFixed(0) + "%/yr your milestones look very close. But Bitcoin has had 80%+ drawdowns — make sure your DCA holds through a 2-year bear market at those numbers. The best stackers buy more when it drops.",
+      impact: "low"
+    });
+  }
+
+  // ── R9: Lump sum — only for small stacks
+  if (totalVal < 8000 && dca > 0 && nextM) {
+    var lumpStack = stack + (Math.min(expenses, 2000) / price);
+    var lumpMos   = projectMonths(lumpStack, dca, price, monthlyRate, nextM.target);
+    var lumpSaved = lumpMos !== null ? nextM.months - lumpMos : 0;
+    if (lumpSaved > 0) {
+      recos.push({
+        ico: "💡",
+        head: "A " + fmtUSD(Math.min(expenses, 2000)) + " lump sum now saves ~" + lumpSaved + " months toward " + nextM.name,
+        desc: "Early sats compound the longest. Converting " + fmtUSD(Math.min(expenses, 2000)) + " into Bitcoin today — one month of expenses — and continuing your DCA shaves ~" + lumpSaved + " months off your next milestone. Time in the market beats timing the market.",
+        impact: "med"
+      });
+    }
+  }
+
+  // Sort by impact, return the 2 most actionable
+  var order = { high:0, med:1, low:2 };
+  recos.sort(function(a,b){ return order[a.impact] - order[b.impact]; });
+  return recos.slice(0, 2);
+}
+
+// ─────────────────────────────────────────────────────────────────
+// PROGRESS BAR COLOR — red → orange → yellow → green
+// based on how close you are to the milestone target
+// ─────────────────────────────────────────────────────────────────
+function barGradient(pct, reached) {
+  if (reached) return "linear-gradient(90deg,#34d399,#6ee7b7)";
+  if (pct >= 75) return "linear-gradient(90deg,#84cc16,#34d399)";      // yellow-green → green
+  if (pct >= 50) return "linear-gradient(90deg,#f7931a,#eab308)";      // orange → yellow
+  if (pct >= 25) return "linear-gradient(90deg,#f97316,#f7931a)";      // red-orange → orange
+  return           "linear-gradient(90deg,#ef4444,#f97316)";            // red → red-orange
+}
+function render() {
+  var inp  = getInputs();
+  var ms   = buildMilestones(inp);
+  var recs = buildRecos(inp, ms);
+
+  var stack      = inp.stack;
+  var price      = inp.price;
+  var annualRate = inp.annualRate;
+  var monthlyRate= inp.monthlyRate;
+  var totalUSD   = stack * price;
+  var today      = new Date();
+
+  var reached = 0;
+  for (var i=0; i<ms.length; i++) if (ms[i].reached) reached++;
+  var score = Math.round((reached / ms.length) * 100);
+
+  // next milestone time
+  var nextM  = null;
+  for (var i=0; i<ms.length; i++) { if (!ms[i].reached && ms[i].date) { nextM=ms[i]; break; } }
+  var toNextStr = "—";
+  if (nextM) {
+    var mos = monthsBetween(today, nextM.date);
+    toNextStr = mos >= 12 ? (mos/12).toFixed(1)+"yr" : mos+"mo";
+  }
+
+  // scenario color
+  var sColor = currentScen==="bear" ? "#f87171"
+             : currentScen==="bull" ? "#34d399"
+             : currentScen==="custom"
+               ? (annualRate>=0.8?"#34d399":annualRate>=0.4?"#f7931a":"#f87171")
+             : "#f7931a";
+
+  // ── Hero stats
+  document.getElementById("h-stack").textContent   = "₿ " + fmtBTC(stack);
+  document.getElementById("h-usd").textContent     = fmtUSD(totalUSD);
+  document.getElementById("h-next").textContent    = toNextStr;
+  document.getElementById("h-reached").textContent = reached + "/" + ms.length;
+  var cagrEl = document.getElementById("h-cagr");
+  cagrEl.textContent  = (annualRate*100).toFixed(1) + "%";
+  cagrEl.style.color  = sColor;
+
+  // ── Scenario tag removed from header (replaced with historical CAGR chips)
+
+  // ── CAGR display bar above milestones
+  var monthly_pct = (monthlyRate * 100).toFixed(2);
+  var cagrDisplay = document.getElementById("cagr-display");
+  cagrDisplay.textContent = "CAGR " + (annualRate*100).toFixed(1) + "%/yr  ·  " + monthly_pct + "%/mo compounding";
+  cagrDisplay.style.color = sColor;
+
+  // ── Custom box meta
+  if (currentScen === "custom") {
+    document.getElementById("custom-meta").innerHTML =
+      "Active: <strong style='color:"+sColor+"'>" + (annualRate*100).toFixed(1) + "%/yr</strong>" +
+      " &nbsp;·&nbsp; monthly: <strong style='color:var(--text)'>" + monthly_pct + "%</strong>";
+  }
+
+  // ── Score ring
+  var C      = 2 * Math.PI * 50;
+  var offset = C - (score/100) * C;
+  var rCol   = score>66?"#34d399":score>33?"#f7931a":"#f87171";
+  var arc    = document.getElementById("ring-arc");
+  arc.style.strokeDashoffset = offset;
+  arc.setAttribute("stroke", rCol);
+  arc.style.filter = "drop-shadow(0 0 8px "+rCol+"99)";
+  var rnum = document.getElementById("ring-num");
+  rnum.textContent = score;
+  rnum.style.color = rCol;
+  var labels=["Just getting started","Building foundations","Gaining sovereignty","Almost free","Full sovereignty ⚡"];
+  document.getElementById("score-sub").textContent = score===0?labels[0]:score<34?labels[1]:score<67?labels[2]:score<100?labels[3]:labels[4];
+
+  // ── Timeline
+  var tl = document.getElementById("timeline");
+  if (stack === 0) {
+    tl.innerHTML = '<div class="empty"><div class="ei">₿</div><p>Enter your Bitcoin stack<br>to unlock your sovereignty timeline.</p></div>';
+  } else {
+    var html = "";
+    var nextIdx = -1;
+    for (var i=0; i<ms.length; i++) { if (!ms[i].reached) { nextIdx=i; break; } }
+
+
+    for (var i=0; i<ms.length; i++) {
+      var m      = ms[i];
+      var isNext = (i === nextIdx);
+
+      // Target year flag
+
+      var cls = m.reached ? " reached" : isNext ? " nxt" : "";
+
+      // ── Progress bar calculation ──
+      // Reached: full green bar
+      // Unmet with date: blend of value progress + time proximity
+      //   - time proximity = 1 / (1 + yearsAway) so 0yr=100%, 1yr≈50%, 5yr≈17%, 20yr≈5%
+      //   - blended with value pct so the bar also reflects $ progress
+      //   - result: closer milestones glow fuller, distant ones stay slim
+      // Unmet with no date (beyond 100yr): purely value pct, stays very low
+      var barPct;
+      var barColor;
+      if (m.reached) {
+        barPct   = 100;
+        barColor = "linear-gradient(90deg,#34d399,#6ee7b7)";
+      } else if (m.months !== null) {
+        var yrsAway   = m.months / 12.0;
+        var timeProx  = 1.0 / (1.0 + yrsAway);
+        var valuePct  = m.pct / 100.0;
+        barPct = Math.min(97, (timeProx * 0.6 + valuePct * 0.4) * 100);
+        // Color: red → orange → yellow → green based on barPct
+        if      (barPct >= 75) barColor = "linear-gradient(90deg,#84cc16,#34d399)";
+        else if (barPct >= 50) barColor = "linear-gradient(90deg,#f7931a,#eab308)";
+        else if (barPct >= 25) barColor = "linear-gradient(90deg,#f97316,#f7931a)";
+        else                   barColor = "linear-gradient(90deg,#ef4444,#f97316)";
+      } else {
+        barPct   = Math.min(8, m.pct);
+        barColor = "linear-gradient(90deg,#ef4444,#f97316)";
+      }
+
+      var badgeHtml;
+      if (m.reached) {
+        badgeHtml = '<span class="mbadge rb">✓ Reached</span>';
+      } else if (m.date) {
+        badgeHtml = '<span class="mbadge db">' + fmtDate(m.date) + '</span>';
+      } else {
+        badgeHtml = '<span class="mbadge fb">Beyond 100 yrs</span>';
+      }
+
+      // years-away pill (only for unmet milestones with a date)
+      var yrsPill = "";
+      if (!m.reached && m.months !== null) {
+        var yrsAway = (m.months / 12).toFixed(1);
+        yrsPill = '<span class="yrs-pill">in ' + yrsAway + ' yrs</span>';
+      }
+
+      html += '<div class="mcard' + cls + '" style="animation:cin 0.35s ease ' + (i*45) + 'ms both">'+
+        '<div class="mtop">' +
+          '<div class="mleft">' +
+            '<div class="mico">' + m.icon + '</div>' +
+            '<div><div class="mname">' + m.name + '</div><div class="msub">' + m.sub + '</div></div>' +
+          '</div>' +
+          '<div class="mright">' + badgeHtml + yrsPill + '</div>' +
+        '</div>' +
+        '<div class="mbar-row">' +
+          '<div class="mtrack"><div class="mfill" style="width:' + barPct.toFixed(1) + '%;background:' + barColor + '"></div></div>' +
+          '<span class="mamts">' + fmtUSD(m.currentVal) + ' / ' + fmtUSD(m.target) + '</span>' +
+        '</div>' +
+      '</div>';
+    }
+    tl.innerHTML = html;
+  }
+
+  // ── Recommendations
+  var rb = document.getElementById("reco-box");
+  if (stack === 0 || recs.length === 0) {
+    rb.style.display = "none";
+  } else {
+    rb.style.display = "";
+    var rhtml = "";
+    for (var i=0; i<recs.length; i++) {
+      var r = recs[i];
+      rhtml += '<div class="reco-item">' +
+        '<div class="reco-ico">' + r.ico + '</div>' +
+        '<div><div class="reco-head">' + r.head + '</div>' +
+        '<div class="reco-desc">' + r.desc + '</div>' +
+        '<span class="reco-badge ' + r.impact + '">' + (r.impact==="high"?"● High impact":r.impact==="med"?"● Medium impact":"● Good to know") + '</span></div>' +
+      '</div>';
+    }
+    document.getElementById("reco-list").innerHTML = rhtml;
+  }
+
+  // ── Target Year
+  renderTargetYear(inp, ms);
+}
+
+// ─────────────────────────────────────────────────────────────────
+// TARGET YEAR — reverse-engineer required DCA to hit FIRE by target
+// ─────────────────────────────────────────────────────────────────
+function renderTargetYear(inp, milestones) {
+  var el = document.getElementById("target-year-result");
+  var tyrVal = document.getElementById("inp-target-year").value.trim();
+  if (!tyrVal || tyrVal === "") { el.innerHTML = ""; return; }
+
+  var targetYear = parseInt(tyrVal);
+  var nowYear    = new Date().getFullYear();
+  var nowMonth   = new Date().getMonth();
+  if (isNaN(targetYear) || targetYear <= nowYear) { el.innerHTML = ""; return; }
+
+  var monsAvail  = (targetYear - nowYear) * 12 - nowMonth;
+  if (monsAvail <= 0) { el.innerHTML = ""; return; }
+
+  var stack       = inp.stack;
+  var dca         = inp.dca;
+  var price       = inp.price;
+  var monthlyRate = inp.monthlyRate;
+  var annualRate  = inp.annualRate;
+  var expenses    = inp.expenses;
+  var fireTarget  = expenses * 12 * 25;
+  var yearsLeft   = (monsAvail / 12).toFixed(1);
+
+  // What will current stack + DCA be worth at target year?
+  function projAtMonths(dcaAmt, months) {
+    var btc = stack;
+    var p   = price;
+    for (var m = 1; m <= months; m++) {
+      p   = p * (1.0 + monthlyRate);
+      btc = btc + (dcaAmt / p);
+    }
+    return btc * p;
+  }
+
+  var projectedVal = projAtMonths(dca, monsAvail);
+
+  // Binary search for the DCA needed to hit FIRE target by target year
+  function findRequiredDCA(target, months) {
+    // Check if achievable at all with very high DCA (sanity cap $100K/mo)
+    if (projAtMonths(100000, months) < target) return null;
+    // Already there with current stack + 0 DCA?
+    if (projAtMonths(0, months) >= target) return 0;
+    var lo = 0, hi = 100000;
+    for (var i = 0; i < 40; i++) {
+      var mid = (lo + hi) / 2;
+      if (projAtMonths(mid, months) >= target) hi = mid;
+      else lo = mid;
+    }
+    return Math.ceil(hi / 10) * 10; // round up to nearest $10
+  }
+
+  var requiredDCA = findRequiredDCA(fireTarget, monsAvail);
+  var dcaGap      = requiredDCA !== null ? requiredDCA - dca : null;
+  var onTrack     = projectedVal >= fireTarget;
+
+  var html = "";
+
+  if (onTrack) {
+    html = '<div class="tyr-card on-track">' +
+      '<div class="tyr-status on-track">✓ On track for ' + targetYear + '</div>' +
+      '<div class="tyr-detail">At your current DCA of <strong>' + fmtUSD(dca) + '/mo</strong>, your stack projects to <strong>' + fmtUSD(projectedVal) + '</strong> by ' + targetYear + ' — that\'s ' + (projectedVal >= fireTarget ? '<strong style="color:var(--green)">above</strong>' : 'below') + ' your FIRE target of ' + fmtUSD(fireTarget) + '.</div>' +
+      '<span class="tyr-countdown">' + yearsLeft + ' years · ' + monsAvail + ' months to go</span>' +
+    '</div>';
+  } else if (requiredDCA !== null) {
+    var extra = dcaGap > 0 ? dcaGap : 0;
+    html = '<div class="tyr-card off-track">' +
+      '<div class="tyr-status off-track">⚡ You need ' + fmtUSD(requiredDCA) + '/mo to hit FIRE by ' + targetYear + '</div>' +
+      '<div class="tyr-detail">Current DCA: <strong>' + fmtUSD(dca) + '/mo</strong> → projects to <strong>' + fmtUSD(projectedVal) + '</strong> by ' + targetYear + '.<br>' +
+      'Gap to FIRE (' + fmtUSD(fireTarget) + '): <strong style="color:var(--amber)">+' + fmtUSD(extra) + '/mo</strong> more needed.' +
+      '</div>' +
+      '<span class="tyr-countdown">' + yearsLeft + ' years · ' + monsAvail + ' months to go</span>' +
+    '</div>';
+  } else {
+    html = '<div class="tyr-card impossible">' +
+      '<div class="tyr-status impossible">⚠ ' + targetYear + ' may be too soon at any DCA</div>' +
+      '<div class="tyr-detail">The FIRE target of <strong>' + fmtUSD(fireTarget) + '</strong> in <strong>' + yearsLeft + ' years</strong> requires extraordinary capital. Try a later target year, reduce expenses, or use a more optimistic CAGR.</div>' +
+    '</div>';
+  }
+
+  el.innerHTML = html;
+}
+
+// ─────────────────────────────────────────────────────────────────
+// LIVE CAGR — fetch historical BTC prices and calculate on load
+// Uses CoinGecko free API: /coins/bitcoin/history?date=DD-MM-YYYY
+// ─────────────────────────────────────────────────────────────────
+async function fetchLiveCAGR() {
+  try {
+    var now = new Date();
+    var cur = livePrice;
+
+    // Format date as DD-MM-YYYY for CoinGecko
+    function cgDate(d) {
+      return d.getDate().toString().padStart(2,'0') + '-' +
+             (d.getMonth()+1).toString().padStart(2,'0') + '-' +
+             d.getFullYear();
+    }
+
+    function makeDate(yearsBack) {
+      var d = new Date(now);
+      d.setFullYear(d.getFullYear() - yearsBack);
+      return d;
+    }
+
+    async function getPriceAt(date) {
+      var url = "https://api.coingecko.com/api/v3/coins/bitcoin/history?date=" + cgDate(date) + "&localization=false";
+      var r = await fetch(url);
+      var d = await r.json();
+      return d && d.market_data && d.market_data.current_price && d.market_data.current_price.usd;
+    }
+
+    // Fetch in parallel
+    var [p5, p10, p15] = await Promise.all([
+      getPriceAt(makeDate(5)),
+      getPriceAt(makeDate(10)),
+      getPriceAt(makeDate(15)),
+    ]);
+
+    function cagr(past, present, years) {
+      if (!past || past <= 0) return null;
+      return (Math.pow(present / past, 1.0 / years) - 1.0) * 100;
+    }
+
+    var c5  = cagr(p5,  cur, 5);
+    var c10 = cagr(p10, cur, 10);
+    var c15 = cagr(p15, cur, 15);
+
+    // Update chips
+    if (c5  !== null) updateChip("chip-5yr",  c5,  5,  p5);
+    if (c10 !== null) updateChip("chip-10yr", c10, 10, p10);
+    if (c15 !== null) updateChip("chip-15yr", c15, 15, p15);
+
+  } catch(e) {
+    // silently keep hardcoded fallbacks
+  }
+}
+
+function updateChip(id, cagrPct, years, pastPrice) {
+  var el = document.getElementById(id);
+  if (!el) return;
+  el.textContent = "~" + Math.round(cagrPct) + "%";
+  // Color: green if strong, amber if moderate, red if weak
+  el.style.color = cagrPct >= 80 ? "var(--green)" : cagrPct >= 40 ? "var(--amber)" : "#f87171";
+  // Update tooltip
+  var chip = el.closest(".cagr-chip");
+  if (chip && pastPrice) {
+    var d = new Date(); d.setFullYear(d.getFullYear()-years);
+    chip.title = "BTC ~$" + Math.round(pastPrice).toLocaleString() + " (" + d.toLocaleDateString("en-US",{month:"short",year:"numeric"}) + ") → $" + Math.round(livePrice).toLocaleString() + " now";
+  }
+}
+function setScen(s) {
+  currentScen = s;
+
+  // update buttons
+  document.querySelectorAll(".scen-btn").forEach(function(b) {
+    b.className = b.className.replace(" on","");
+    if (b.getAttribute("onclick") === "setScen('"+s+"')") b.className += " on";
+  });
+
+  var hint   = document.getElementById("scen-hint");
+  var cusBox = document.getElementById("custom-box");
+
+  if (s === "custom") {
+    hint.style.display   = "none";
+    cusBox.classList.add("show");
+  } else {
+    hint.style.display = "";
+    cusBox.classList.remove("show");
+    var msgs = {
+      bear: '<span style="color:#f87171">Bear CAGR 20%/yr</span> · monthly: 1.53% · conservative',
+      base: '<span style="color:var(--amber)">Base CAGR 55%/yr</span> · monthly: 3.72% · historical avg',
+      bull: '<span style="color:var(--green)">Bull CAGR 110%/yr</span> · monthly: 6.42% · strong cycle',
+    };
+    hint.innerHTML = msgs[s] + '<br><span style="color:var(--subtle)">Using live BTC price: <span style="color:var(--amber)">$' + fmtNum(livePrice) + '</span></span>';
+  }
+
+  render();
+}
+
+// ─────────────────────────────────────────────────────────────────
+// LIVE BTC PRICE
+// ─────────────────────────────────────────────────────────────────
+async function fetchPrice() {
+  try {
+    var r = await fetch("https://api.coinbase.com/v2/prices/BTC-USD/spot");
+    var d = await r.json();
+    var p = parseFloat(d && d.data && d.data.amount);
+    if (!isNaN(p) && p > 0) {
+      var dir    = p > prevPrice ? "up" : p < prevPrice ? "down" : "neutral";
+      prevPrice  = livePrice;
+      livePrice  = p;
+      var pEl    = document.getElementById("price-val");
+      pEl.textContent = "$" + fmtNum(p);
+      pEl.style.color = dir==="up"?"var(--green)":dir==="down"?"var(--red)":"var(--amber)";
+      var badge  = document.getElementById("live-badge");
+      badge.className = "live-badge " + dir;
+      var t = new Date();
+      document.getElementById("last-upd").textContent = " · " + t.toLocaleTimeString("en-US",{hour:"2-digit",minute:"2-digit"});
+    }
+  } catch(e) {}
+
+  try {
+    var r2 = await fetch("https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd&include_24hr_change=true");
+    var d2 = await r2.json();
+    var chg = d2 && d2.bitcoin && d2.bitcoin.usd_24h_change;
+    if (chg !== undefined && !isNaN(chg)) {
+      var chgEl = document.getElementById("price-chg");
+      chgEl.textContent = (chg>=0?"▲":"▼") + Math.abs(chg).toFixed(2) + "%";
+      chgEl.style.color = chg>=0?"var(--green)":"var(--red)";
+      chgEl.style.display = "";
+    }
+  } catch(e) {}
+
+  if (currentScen !== "custom") render();
+}
+
+// ─────────────────────────────────────────────────────────────────
+// WIRE INPUTS
+// ─────────────────────────────────────────────────────────────────
+["inp-stack","inp-dca","inp-exp","inp-cprice","inp-cgrowth","inp-target-year"].forEach(function(id) {
+  var el = document.getElementById(id);
+  if (!el) return;
+  el.addEventListener("input",  render);
+  el.addEventListener("change", render);
+});
+
+// ─────────────────────────────────────────────────────────────────
+// INIT
+// ─────────────────────────────────────────────────────────────────
+setScen("base");
+fetchPrice();
+fetchLiveCAGR();
+setInterval(fetchPrice, 10 * 60 * 1000);
+</script>
+</body>
+</html>
