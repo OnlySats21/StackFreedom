@@ -1,4 +1,4 @@
-<index.html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8"/>
@@ -205,6 +205,134 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);min-he
 ::-webkit-scrollbar-track{background:transparent;}
 ::-webkit-scrollbar-thumb{background:var(--subtle);border-radius:2px;}
 @keyframes cin{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+/* DISCLOSURE FOOTER */
+.disclosure{
+  margin-top:60px;
+  padding-top:32px;
+  border-top:1px solid var(--border);
+}
+.disclosure-inner{
+  display:flex;align-items:flex-start;gap:14px;
+  padding:20px 24px;
+  background:var(--surface);
+  border:1px solid rgba(248,113,113,0.12);
+  border-radius:16px;
+}
+.disc-icon{font-size:18px;flex-shrink:0;margin-top:1px;}
+.disclosure-inner p{
+  font-size:11px;
+  color:var(--muted);
+  line-height:1.75;
+  font-family:'JetBrains Mono',monospace;
+}
+.disclosure-inner p strong{
+  color:rgba(248,113,113,0.8);
+  font-weight:600;
+}
+.disclosure-inner p em{
+  color:var(--text);
+  font-style:normal;
+  font-weight:500;
+}
+@media(max-width:768px){
+  .disclosure{margin-top:40px;padding-top:24px;}
+  .disclosure-inner{padding:14px 16px;gap:10px;}
+  .disclosure-inner p{font-size:10px;}
+}
+@media (max-width: 768px) {
+
+  /* shell padding */
+  .shell{padding:0 16px 80px;}
+
+  /* header — stack logo and badge vertically */
+  .hdr{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:16px;
+    padding:24px 0 20px;
+    margin-bottom:28px;
+  }
+  .hdr-right{
+    width:100%;
+    justify-content:flex-start;
+    flex-wrap:wrap;
+    gap:8px;
+  }
+  .cagr-chips{gap:4px;}
+  .cagr-chip{padding:4px 10px;}
+  .cagr-chip-val{font-size:12px;}
+  .live-badge{font-size:11px;padding:6px 12px;}
+
+  /* hero — single column */
+  .hero{
+    grid-template-columns:1fr;
+    gap:16px;
+    margin-bottom:24px;
+  }
+  .hero-main{padding:22px 20px;}
+  .hero-title{font-size:26px;}
+  .hero-desc{font-size:13px;}
+  .stats-bar{gap:18px;}
+  .stat-val{font-size:17px;}
+
+  /* score card — smaller ring */
+  .score-card{padding:20px 16px;flex-direction:row;gap:20px;text-align:left;justify-content:flex-start;}
+  .ring-wrap{width:80px;height:80px;flex-shrink:0;}
+  .ring-wrap svg{width:80px;height:80px;}
+  #ring-num{font-size:22px;}
+
+  /* main grid — single column */
+  .main-grid{
+    grid-template-columns:1fr;
+    gap:16px;
+  }
+
+  /* panel */
+  .panel{padding:20px 16px;}
+
+  /* target year result card */
+  .tyr-card{padding:12px 14px;}
+  .tyr-status{font-size:11px;}
+  .tyr-detail{font-size:10px;}
+
+  /* reco box */
+  .reco-box{padding:18px 16px;margin-top:16px;}
+  .reco-head{font-size:13px;}
+  .reco-desc{font-size:12px;}
+  .reco-item{padding:12px 14px;gap:10px;}
+  .reco-ico{font-size:18px;}
+
+  /* CAGR bar above timeline */
+  .cagr-bar{flex-direction:column;align-items:flex-start;gap:4px;padding:10px 12px;}
+  .cagr-bar-val{font-size:12px;}
+
+  /* milestone cards */
+  .mcard{padding:14px 16px;}
+  .mname{font-size:13px;}
+  .msub{font-size:11px;}
+  .mbadge{font-size:10px;padding:3px 8px;}
+  .mico{width:30px;height:30px;font-size:14px;}
+  .mamts{font-size:10px;}
+  .yrs-pill{font-size:9px;}
+
+  /* hide orbs on mobile — save render performance */
+  .orb{display:none;}
+
+  /* logo shield slightly smaller on mobile */
+  .logo-mark{width:46px;height:52px;}
+  .logo-shield-svg{width:46px;height:52px;}
+  .logo-mark-b{font-size:21px;}
+  .logo-text h1{font-size:16px;}
+}
+
+@media (max-width: 400px) {
+  .hero-title{font-size:22px;}
+  .stats-bar{gap:12px;}
+  .stat-val{font-size:15px;}
+  .shell{padding:0 12px 60px;}
+  .score-card{flex-direction:column;text-align:center;}
+}
 </style>
 </head>
 <body>
@@ -381,6 +509,18 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);min-he
       </div>
     </div>
   </div>
+
+  <!-- DISCLOSURE FOOTER -->
+  <div class="disclosure">
+    <div class="disclosure-inner">
+      <span class="disc-icon">⚠️</span>
+      <p>
+        <strong>Simulation Only — Not Financial Advice.</strong>
+        All projections on this tool are based on historical Bitcoin performance and user-defined assumptions. Past performance is not indicative of future results. Bitcoin is a highly volatile asset — its price can go up or down significantly. The CAGR rates, milestone dates, and portfolio projections shown here are <em>estimates only</em> and are not guaranteed in any way. This tool is intended for educational and planning purposes only. Nothing on this page constitutes financial, investment, legal, or tax advice. Always do your own research and consult a qualified financial advisor before making any investment decisions.
+      </p>
+    </div>
+  </div>
+
 </div>
 
 <script>
