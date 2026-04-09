@@ -206,7 +206,48 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);min-he
 ::-webkit-scrollbar-thumb{background:var(--subtle);border-radius:2px;}
 @keyframes cin{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 
-/* DISCLOSURE FOOTER */
+/* SITE FOOTER */
+.site-footer{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:24px 0 16px;
+  margin-top:24px;
+  border-top:1px solid var(--border);
+  flex-wrap:wrap;gap:14px;
+}
+.footer-left{display:flex;align-items:center;gap:6px;}
+.footer-built{font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace;}
+.footer-author{
+  font-size:13px;font-weight:700;color:var(--amber);
+  text-decoration:none;font-family:'Syne',sans-serif;
+  transition:opacity .2s;
+}
+.footer-author:hover{opacity:0.75;}
+.footer-tip{
+  display:flex;align-items:center;gap:10px;
+  background:var(--surface);
+  border:1px solid rgba(247,147,26,0.25);
+  border-radius:100px;
+  padding:7px 16px;
+}
+.footer-tip-label{
+  font-size:11px;font-weight:600;
+  color:var(--amber);
+  font-family:'JetBrains Mono',monospace;
+  white-space:nowrap;
+}
+.footer-tip-addr{
+  font-size:12px;font-weight:500;
+  color:var(--text);
+  font-family:'JetBrains Mono',monospace;
+  text-decoration:none;
+  letter-spacing:0.2px;
+  transition:color .2s;
+}
+.footer-tip-addr:hover{color:var(--amber);}
+@media(max-width:768px){
+  .site-footer{flex-direction:column;align-items:flex-start;gap:12px;}
+  .footer-tip{width:100%;justify-content:center;}
+}
 .disclosure{
   margin-top:60px;
   padding-top:32px;
@@ -518,6 +559,18 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);min-he
         <strong>Simulation Only — Not Financial Advice.</strong>
         All projections on this tool are based on historical Bitcoin performance and user-defined assumptions. Past performance is not indicative of future results. Bitcoin is a highly volatile asset — its price can go up or down significantly. The CAGR rates, milestone dates, and portfolio projections shown here are <em>estimates only</em> and are not guaranteed in any way. This tool is intended for educational and planning purposes only. Nothing on this page constitutes financial, investment, legal, or tax advice. Always do your own research and consult a qualified financial advisor before making any investment decisions.
       </p>
+    </div>
+  </div>
+
+  <!-- FOOTER — Creator + Tip -->
+  <div class="site-footer">
+    <div class="footer-left">
+      <span class="footer-built">Built by</span>
+      <a class="footer-author" href="https://x.com/OnlySats21" target="_blank" rel="noopener">AAStack</a>
+    </div>
+    <div class="footer-tip">
+      <span class="footer-tip-label">⚡ Support with Bitcoin</span>
+      <a class="footer-tip-addr" href="lightning:onlysat@strike.me" title="Send a tip via Lightning">onlysat@strike.me</a>
     </div>
   </div>
 
